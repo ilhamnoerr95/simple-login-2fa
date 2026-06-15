@@ -1,4 +1,20 @@
 {
+	"name": "Simple login 2fa",
+	"workspaces": [
+		"apps/*",
+		"apps/*/*",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"lint": "turbo run lint",
+		"db:generate:payment": "turbo run db:generate",
+		"db:migrate": "turbo run db:migrate",
+		"db:deploy": "turbo run db:deploy",
+		"db:push": "turbo run db:push",
+		"db:studio": "turbo run db:studio"
+	},
 	"dependencies": {
 		"turbo": "^2.9.16"
 	}

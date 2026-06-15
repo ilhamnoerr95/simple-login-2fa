@@ -1,1 +1,120 @@
-/node_modules
+# ==================================================
+# Core (Monorepo / Turbo)
+# ==================================================
+node_modules/
+.turbo/
+.pnpm-store/
+
+# ==================================================
+# Package Managers
+# ==================================================
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ==================================================
+# Frontend (Next.js)
+# ==================================================
+apps/frontend/.next/
+apps/frontend/out/
+apps/frontend/next-env.d.ts
+
+# ==================================================
+# Backend (NestJS / Node)
+# ==================================================
+apps/backend/commerce/dist/
+apps/backend/commerce/build/
+apps/backend/commerce/.temp/
+apps/backend/commerce/.tmp/
+apps/backend/profile/dist/
+apps/backend/profile/build/
+apps/backend/profile/.temp/
+apps/backend/profile/.tmp/
+apps/backend/payment/dist/
+apps/backend/payment/build/
+apps/backend/payment/.temp/
+apps/backend/payment/.tmp/
+
+apps/backend/commerce/generated/prisma
+apps/backend/profile/generated/prisma
+apps/backend/payment/generated/prisma
+
+# ==================================================
+# General Build / Test Output
+# ==================================================
+build/
+coverage/
+.nyc_output/
+
+# ==================================================
+# Logs
+# ==================================================
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ==================================================
+# Environment Variables
+# ==================================================
+.env*
+!.env.example
+
+# ==================================================
+# Vercel
+# ==================================================
+.vercel
+
+# ==================================================
+# TypeScript
+# ==================================================
+*.tsbuildinfo
+
+# ==================================================
+# OS
+# ==================================================
+.DS_Store
+
+# ==================================================
+# IDEs & Editors
+# ==================================================
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# VSCode (keep shared config)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ==================================================
+# Runtime / Process
+# ==================================================
+*.pid
+*.seed
+*.pid.lock
+
+# ==================================================
+# Certificates / Secrets
+# ==================================================
+*.pem
+
+# ==================================================
+# Diagnostic Reports
+# ==================================================
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+/generated/prisma

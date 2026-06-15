@@ -1,0 +1,89 @@
+import { HttpMethod } from "@/types/Fetcher.type";
+import { QueryKey } from "@tanstack/react-query";
+import Cookies from "js-cookie";
+
+/**
+ * Fetcher module to handle HTTP requests.
+ * queryKey[0] for path
+ * queryKey[1] for query params
+ * quueryKey[2] for dynamic link real be
+ */
+
+type TFetcherParams<TData = unknown, TBody = unknown> = {
+  method?: HttpMethod;
+  body?: TBody;
+  queryKey?: QueryKey;
+  headers?: HeadersInit;
+  url?: string | undefined | null;
+  auth?: boolean;
+  serverAction?: boolean; // for server action
+  isr?: {
+    active?: boolean;
+    revalidate?: number;
+  };
+};
+
+/**
+ * Custom fetcher function to make HTTP requests.
+ * @returns TData is responseData type
+ */
+export const Fetcher = async <TData = unknown, TBody = unknown>(
+  params: TFetcherParams<TData, TBody>
+): Promise<TData> => {
+  try {
+    const {
+      method = "GET",
+      body,
+      queryKey,
+      headers = {
+        "Content-Type": "application/json",
+      },
+      url,
+      auth = true,
+      serverAction = false,
+      isr = {
+        active: false,
+        revalidate: 60,
+      },
+    } = params;
+
+    const token = Cookies.get("token"); // cookies name
+    const link = queryKey?.[2];
+    const query = new URLSearchParams(queryKey?.[1] as Record<string, string>);
+    const path = url || `${queryKey?.[0]}?${query.toString()}`;
+    const serverActPath = serverAction
+      ? (process.env.API_URL_INTERNAL as string)
+      : (process.env.NEXT_PUBLIC_ORIGIN as string);
+
+    // url string
+    const urlString = url ? url : serverActPath + path;
+
+    const opts = {
+      method,
+      ...(body && { body: JSON.stringify(body) }),
+      headers: {
+        ...headers,
+        link: link as string,
+        ...(auth && { Authorization: token }),
+      },
+      ...(isr?.active && {
+        next: {
+          revalidate: isr.revalidate,
+        },
+      }),
+    };
+
+    const res = await fetch(urlString, opts);
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      console.error("not ok", result);
+      return result;
+    }
+
+    return result;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
