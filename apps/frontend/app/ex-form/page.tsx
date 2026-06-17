@@ -1,3 +1,5 @@
+"use client";
+
 import ServerForm from "@/components/molecules/ServerForm";
 import FormField from "@/components/atom/FormField";
 import Button from "@/components/atom/Button";

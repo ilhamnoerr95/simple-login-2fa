@@ -1,10 +1,6 @@
 {
 	"name": "Simple login 2fa",
-	"workspaces": [
-		"apps/*",
-		"apps/*/*",
-		"packages/*"
-	],
+	"packageManager": "pnpm@10.14.0",
 	"scripts": {
 		"dev": "turbo run dev",
 		"build": "turbo run build",

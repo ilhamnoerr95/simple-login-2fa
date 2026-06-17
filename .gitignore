@@ -26,22 +26,13 @@ apps/frontend/next-env.d.ts
 # ==================================================
 # Backend (NestJS / Node)
 # ==================================================
-apps/backend/commerce/dist/
-apps/backend/commerce/build/
-apps/backend/commerce/.temp/
-apps/backend/commerce/.tmp/
-apps/backend/profile/dist/
-apps/backend/profile/build/
-apps/backend/profile/.temp/
-apps/backend/profile/.tmp/
-apps/backend/payment/dist/
-apps/backend/payment/build/
-apps/backend/payment/.temp/
-apps/backend/payment/.tmp/
+apps/backend/dist/
+apps/backend/build/
+apps/backend/.temp/
+apps/backend/.tmp/
 
-apps/backend/commerce/generated/prisma
-apps/backend/profile/generated/prisma
-apps/backend/payment/generated/prisma
+apps/backend/generated/prisma
+
 
 # ==================================================
 # General Build / Test Output
