@@ -1,3 +1,4 @@
+import './env';
 import {
   BadRequestException,
   Logger,
@@ -33,6 +34,7 @@ async function bootstrap() {
       // request will be stripped if they are not in the DTO
       whitelist: true,
       forbidNonWhitelisted: true,
+      // transform dto type
       transform: true,
       // customize error response for validation errors
       exceptionFactory: (errors: ValidationError[] = []) => {
@@ -72,7 +74,7 @@ async function bootstrap() {
 
   // set global filter for all routes
   app.useGlobalFilters(new HttpExceptionFilter());
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3001;
 
   await app.listen(PORT, () => {
     logger.log(`Server is running on port ${PORT}`);
